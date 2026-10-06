@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Network Designer</title>
+  <meta name="description" content="Interactive campus network optimization using Prim's Minimum Spanning Tree algorithm." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-one"></div><div class="bg-orb orb-two"></div>
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">⌁</div><div><div class="brand-title">Campus<span>Net</span></div><div class="brand-sub">NETWORK DESIGNER</div></div></div>
+    <div class="top-actions"><span class="status-dot"></span><span>Optimization Engine Online</span><button id="demoBtn" class="ghost-btn">Load Demo</button></div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">DAA • MINIMUM SPANNING TREE</div>
+        <h1>Design a smarter<br><span>campus network.</span></h1>
+        <p>Model your campus, define connection costs, and generate the minimum-cost network using Prim's greedy algorithm.</p>
+      </div>
+      <div class="hero-badge"><div class="pulse"></div><div><strong>PRIM'S ALGORITHM</strong><small>Greedy optimization</small></div></div>
+    </section>
+
+    <section class="stats" id="stats">
+      <div class="stat-card"><span>BUILDINGS</span><strong id="buildingCount">0</strong><small>network nodes</small></div>
+      <div class="stat-card"><span>CONNECTIONS</span><strong id="edgeCount">0</strong><small>possible links</small></div>
+      <div class="stat-card accent"><span>MINIMUM COST</span><strong id="minCost">—</strong><small>selected network</small></div>
+      <div class="stat-card"><span>SAVINGS</span><strong id="savings">—</strong><small>vs. all connections</small></div>
+    </section>
+
+    <section class="workspace">
+      <aside class="panel controls">
+        <div class="panel-head"><div><span class="section-kicker">01 / INPUT</span><h2>Network setup</h2></div><span class="live-pill">LIVE</span></div>
+        <label>Building name</label>
+        <div class="inline-form"><input id="buildingInput" placeholder="e.g. Library" maxlength="24"><button id="addBuilding">Add</button></div>
+        <div class="building-list" id="buildingList"></div>
+
+        <div class="divider"></div>
+        <label>Connection</label>
+        <div class="connection-form">
+          <select id="fromSelect"></select><span>→</span><select id="toSelect"></select>
+          <input id="costInput" type="number" min="1" placeholder="Cost">
+          <button id="addEdge">Add connection</button>
+        </div>
+        <div class="edge-list" id="edgeList"></div>
+
+        <div class="control-actions">
+          <button id="designBtn" class="primary-btn">✦ Design Minimum Network</button>
+          <button id="resetBtn" class="secondary-btn">Reset</button>
+        </div>
+        <div id="message" class="message"></div>
+      </aside>
+
+      <section class="panel visual">
+        <div class="panel-head">
+          <div><span class="section-kicker">02 / VISUALIZE</span><h2>Campus topology</h2></div>
+          <div class="legend"><span><i class="line normal"></i> Available</span><span><i class="line mst"></i> Selected MST</span></div>
+        </div>
+        <div class="graph-wrap"><svg id="graph" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet"></svg><div id="emptyState" class="empty"><div class="empty-icon">⌁</div><strong>Add buildings to begin</strong><span>Your network graph will appear here.</span></div></div>
+      </section>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="panel result-panel">
+        <div class="panel-head"><div><span class="section-kicker">03 / RESULT</span><h2>Optimized connections</h2></div><span id="resultBadge" class="result-badge">NOT RUN</span></div>
+        <div id="resultTable" class="result-empty">Run the optimizer to see the recommended cable plan.</div>
+      </div>
+      <div class="panel algorithm-panel">
+        <span class="section-kicker">WHY THIS WORKS</span>
+        <h2>Prim's algorithm</h2>
+        <p>Starting from one building, the algorithm repeatedly chooses the cheapest edge that expands the connected network without creating a cycle.</p>
+        <div class="complexity"><div><span>TIME</span><strong>O(V²)</strong></div><div><span>SPACE</span><strong>O(V²)</strong></div><div><span>OUTPUT</span><strong>V − 1 edges</strong></div></div>
+      </div>
+    </section>
+
+    <footer><span>CampusNet Designer</span><span>Built for DAA • Graphs • Greedy Algorithms</span><span>© 2026</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
